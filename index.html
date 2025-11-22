@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEORGE</title>
+
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {font-family:"Helvetica Neue",Arial,sans-serif;background:#000;color:#fff;line-height:1.6;}
+    a {color:inherit;text-decoration:none;}
+
+    header {position:fixed;top:0;left:0;width:100%;padding:25px 50px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:1000;}
+    .logo {font-size:28px;font-weight:bold;letter-spacing:4px;}
+    nav ul {list-style:none;display:flex;gap:30px;}
+    nav ul li a {font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:.3s;}
+    nav ul li a:hover {color:#cfcfcf;}
+
+    /* HERO */
+    .hero {
+      height:100vh;
+      background:url('https://images.unsplash.com/photo-1525286116112-b59af11adad1?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px;
+    }
+    .hero h1 {font-size:80px;letter-spacing:6px;font-weight:bold;}
+    .hero p {margin-top:20px;font-size:20px;max-width:600px;}
+
+    .section-title {text-align:center;font-size:32px;letter-spacing:3px;margin:120px 0 40px;}
+
+    /* PRODUCTOS */
+    .products {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;padding:0 60px 100px;}
+    .product-card {text-align:center;cursor:pointer;transition:.4s;}
+    .product-card img {width:100%;height:420px;object-fit:cover;}
+    .product-card:hover {transform:scale(1.03);}    
+    .product-card h3 {margin-top:15px;letter-spacing:2px;font-size:14px;}
+
+    /* ROPA DE TEMPORADA */
+    #temporada-section {padding-top:80px;}
+    .temporada-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;padding:40px 60px;}
+    .temporada-grid img {width:100%;height:400px;object-fit:cover;cursor:pointer;transition:opacity .4s ease, transform .4s ease;}
+    .transitioning {opacity:0;transform:scale(1.05);}    
+
+    /* EDITORIAL */
+    .editorial {display:flex;gap:60px;padding:120px 60px;align-items:center;flex-wrap:wrap;}
+    .editorial img {width:500px;max-width:100%;object-fit:cover;}
+    .editorial-text {max-width:500px;}
+    .editorial-text h2 {font-size:32px;margin-bottom:20px;letter-spacing:3px;}
+    .editorial-text p {font-size:17px;color:#dcdcdc;}
+
+    /* JUEGO */
+    #game-section {
+      padding:120px 40px;
+      text-align:center;
+      background:#111;
+    }
+
+    #game-container {
+      max-width:700px;
+      margin:auto;
+      padding:40px;
+      background:#222;
+      border:2px solid #444;
+      border-radius:12px;
+    }
+
+    .game-box {display:flex;justify-content:space-between;align-items:center;margin-top:30px;}
+    .game-preview img {width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 6px #000);}
+
+    .game-controls button {
+      background:#000;border:1px solid #fff;color:#fff;
+      padding:12px 20px;margin:10px;cursor:pointer;border-radius:6px;
+      transition:0.3s;
+    }
+    .game-controls button:hover {transform:scale(1.1);background:#333;}
+
+    #result {
+      margin-top:25px;
+      font-size:24px;
+      font-weight:bold;
+      color:#0f0;
+      opacity:0;
+      transition:opacity .6s;
+    }
+
+    footer {background:#111;padding:50px 20px;text-align:center;color:#aaa;font-size:14px;letter-spacing:1px;}
+
+    @media(max-width:768px){
+      header{padding:20px;}
+      .hero h1{font-size:48px;}
+      .hero p{font-size:17px;}
+      .editorial{flex-direction:column;text-align:center;}
+      .game-box{flex-direction:column;}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">GEORGE</div>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#editorial-section">Editorial</a></li>
+        <li><a href="#game-section">Juego</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>GEORGE</h1>
+      <p>El nuevo estándar de lujo y sofisticación contemporánea.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="products">
+    <div class="product-card" onclick="document.getElementById('temporada-section').scrollIntoView({behavior:'smooth'})">
+      <img src="images/EDICION1.jpg" alt="BÁSICOS">
+      <h3>BÁSICOS</h3>
+    </div>
+
+    <div class="product-card">
+      <img src="images/Pieza.jpg" alt="Todo lo que necesitas">
+      <h3>TODO LO QUE NECESITAS</h3>
+    </div>
+
+    <div class="product-card" onclick="document.getElementById('temporada-section').scrollIntoView({behavior:'smooth'})">
+      <img src="images/Fondo2.jpg" alt="TEMPORADA">
+      <h3>TEMPORADA</h3>
+    </div>
+  </section>
+
+  <!-- TEMPORADA -->
+  <section id="temporada-section">
+    <h2 class="section-title">TEMPORADA</h2>
+    <div class="temporada-grid">
+      <img class="swap-img" src="images/ropa1.png" data-alt="images/ropa1v.png" alt="">
+      <img class="swap-img" src="images/ropa2.png" data-alt="images/ropa2v.png" alt="">
+      <img class="swap-img" src="images/ropa3.png" data-alt="images/ropa3v.png" alt="">
+    </div>
+  </section>
+
+  <!-- BASICOS -->
+  <h2 class="section-title">BÁSICOS</h2>
+  <div class="temporada-grid">
+    <img class="swap-img" src="images/basico1.png" data-alt="images/basico1v.png" alt="">
+    <img class="swap-img" src="images/basico2.png" data-alt="images/basico2v.png" alt="">
+    <img class="swap-img" src="images/basico3.png" data-alt="images/basico3v.png" alt="">
+  </div>
+
+  <!-- EDITORIAL -->
+  <section id="editorial-section" class="editorial">
+    <img src="https://images.unsplash.com/photo-1520962918287-7448c2878f65?auto=format&fit=crop&w=1400&q=80" alt="">
+    <div class="editorial-text">
+      <h2>EL ARTE DE LA SIMPLICIDAD</h2>
+      <p>En GEORGE creemos en una estética limpia, poderosa y atemporal...</p>
+    </div>
+  </section>
+
+  <!-- JUEGO -->
+  <section id="game-section">
+    <h2 class="section-title">JUEGO DE ESTILOS</h2>
+
+    <div id="game-container">
+      <h3>Combina la prenda superior e inferior correcta</h3>
+
+      <div class="game-box">
+        <div class="game-preview">
+          <img id="top-img" src="images/top1.png">
+          <div class="game-controls">
+            <button onclick="prevTop()">◀</button>
+            <button onclick="nextTop()">▶</button>
+          </div>
+        </div>
+
+        <div class="game-preview">
+          <img id="bottom-img" src="images/bottom1.png">
+          <div class="game-controls">
+            <button onclick="prevBottom()">◀</button>
+            <button onclick="nextBottom()">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <p id="result">✔ ¡Combinación correcta!</p>
+    </div>
+  </section>
+
+  <footer>© 2025 GEORGE — Todos los derechos reservados.</footer>
+
+  <script>
+    /* CAMBIO DE IMAGEN (TEMPORADA Y BASICOS) */
+    document.querySelectorAll(".swap-img").forEach(img => {
+      const originalSrc = img.getAttribute("src");
+      const alternateSrc = img.getAttribute("data-alt");
+
+      img.addEventListener("click", () => {
+        img.classList.add("transitioning");
+
+        setTimeout(() => {
+          img.src = (img.src.includes(originalSrc)) ? alternateSrc : originalSrc;
+          img.classList.remove("transitioning");
+        }, 400);
+      });
+    });
+
+    /* ---------------------- JUEGO ---------------------- */
+
+    let tops = ["images/top1.png","images/top2.png","images/top3.png"];
+    let bottoms = ["images/bottom1.png","images/bottom2.png","images/bottom3.png"];
+
+    let topIndex = 0;
+    let bottomIndex = 0;
+
+    let correctTop = 1;       // combinación correcta
+    let correctBottom = 2;
+
+    const topImg = document.getElementById("top-img");
+    const bottomImg = document.getElementById("bottom-img");
+    const result = document.getElementById("result");
+
+    function updateGame() {
+      topImg.src = tops[topIndex];
+      bottomImg.src = bottoms[bottomIndex];
+
+      if (topIndex === correctTop && bottomIndex === correctBottom) {
+        result.style.opacity = "1";
+        playSound();
+      } else {
+        result.style.opacity = "0";
+      }
+    }
+
+    /* Sonido */
+    function playSound() {
+      const audio = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_7d54cf3f44.mp3");
+      audio.play();
+    }
+
+    function nextTop(){ topIndex = (topIndex + 1) % tops.length; updateGame(); }
+    function prevTop(){ topIndex = (topIndex - 1 + tops.length) % tops.length; updateGame(); }
+
+    function nextBottom(){ bottomIndex = (bottomIndex + 1) % bottoms.length; updateGame(); }
+    function prevBottom(){ bottomIndex = (bottomIndex - 1 + bottoms.length) % bottoms.length; updateGame(); }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
